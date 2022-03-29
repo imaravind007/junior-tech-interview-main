@@ -43,6 +43,10 @@ class App extends Component {
     });
   }
 
+  componentDidMount(){
+    document.title = "Junior-Tech-Interview"
+  }
+
   render() {
     const { data, patientDetails } = this.state;
     return (
