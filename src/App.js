@@ -1,5 +1,5 @@
 // import axios from 'axios';
-import MOCK from './mock.js';
+// import MOCK from './mock.js';
 import React, { Component } from 'react';
 import axios from 'axios';
 
