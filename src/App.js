@@ -2,9 +2,7 @@
 import MOCK from './mock.js';
 import React, { Component } from 'react';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
 
-let data;
 class App extends Component {
   fetchPatients = async () => {
     console.log('In fetchPatients');
