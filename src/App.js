@@ -1,5 +1,5 @@
 // import axios from 'axios';
-// import MOCK from './mock.js';
+import MOCK from './mock.js';
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -23,8 +23,8 @@ class App extends Component {
 
   constructor() {
     super();
-    this.data = this.fetchPatients(); //API Call to get data for all patients
-    // this.data = MOCK;
+    // this.data = this.fetchPatients(); //API Call to get data for all patients
+    this.data = MOCK;
     this.state = {
       data: this.data,
       patientDetails: null,
