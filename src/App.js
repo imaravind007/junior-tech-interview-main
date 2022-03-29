@@ -7,7 +7,7 @@ class App extends Component {
   fetchPatients = async () => {
     console.log('In fetchPatients');
     const response = await axios.get(
-      'https://ti-patient-service.azurewebsites.net/patient'
+      'https://ti-patient-service.azurewebsites.net/patients'
     );
     console.log(response);
     return response?.data;
