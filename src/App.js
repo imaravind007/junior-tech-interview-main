@@ -74,6 +74,14 @@ class App extends Component {
             <div>postalCode: {patientDetails.postalCode}</div>
           </div>
         )}
+
+              <div id="copyright">
+                    <ul>
+                        <li>&copy; Aravinthan.</li>
+                        <li>Code: <a href="https://github.com/srhr17/srhr17.github.io" target="_blank">This Site</a></li>
+                        <li><a href="#">Go Top</a></li>
+                    </ul>
+                </div>
       </div>
     );
   }
