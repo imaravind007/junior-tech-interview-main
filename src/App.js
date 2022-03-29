@@ -1,25 +1,83 @@
-import logo from './logo.svg';
-import './App.css';
+// import axios from 'axios';
+import MOCK from './mock.js';
+import React, { Component } from 'react';
+import axios from 'axios';
+import ReactDOM from 'react-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+let data;
+class App extends Component {
+  fetchPatients = async () => {
+    console.log('In fetchPatients');
+    const response = await axios.get(
+      'https://ti-patient-service.azurewebsites.net/patients'
+    );
+    console.log(response);
+    return response?.data;
+  };
+
+  fetchPatient = async (patientId) => {
+    const response = await axios.get(
+      `https://ti-patient-service.azurewebsites.net/patients/${patientId}`
+    );
+    console.log(response);
+    return response?.data;
+  };
+
+  constructor() {
+    super();
+    // this.data = this.fetchPatients(); //API Call to get data for all patients
+    this.data = MOCK;
+    this.state = {
+      data: this.data,
+      patientDetails: null,
+    };
+    console.log(this.data);
+  }
+
+  fetchDetails(patientId) {
+    console.log(patientId);
+    // this.patientDetails = this.fetchPatient(patientId); //API Call to get data for specific patient
+    //Mock Code w/o API call
+    this.setState({
+      patientDetails: this.data.find(
+        (patient) => patient.patientId === patientId
+      ),
+    });
+  }
+
+  render() {
+    const { data, patientDetails } = this.state;
+    return (
+      <div className="App">
+        <table>
+          <tr>
+            <th>Name</th>
+          </tr>
+          {data &&
+            data.map((val, key) => {
+              return (
+                <tr key={key} onClick={() => this.fetchDetails(val.patientId)}>
+                  {val.lastName}, {val.firstName}
+                </tr>
+              );
+            })}
+        </table>
+        {patientDetails && (
+          <div class="patient-details">
+            <h1>Patient Details</h1>
+            <div>First Name : {patientDetails.firstName}</div>
+            <div>Last Name : {patientDetails.lastName}</div>
+            <div>gender: {patientDetails.gender}</div>
+            <div>Date of Birth : {patientDetails.dateOfBirth}</div>
+            <div>addressLine1 : {patientDetails.addressLine1}</div>
+            <div>addressLine2 : {patientDetails.addressLine2}</div>
+            <div>city : {patientDetails.city}</div>
+            <div>state : {patientDetails.state}</div>
+            <div>postalCode: {patientDetails.postalCode}</div>
+          </div>
+        )}
+      </div>
+    );
+  }
 }
-
 export default App;
