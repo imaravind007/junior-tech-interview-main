@@ -7,7 +7,7 @@ class App extends Component {
   fetchPatients = async () => {
     console.log('In fetchPatients');
     const response = await axios.get(
-      'https://ti-patient-service.azurewebsites.net/patients'
+      'https://ti-patient-service.azurewebsites.net/patient'
     );
     console.log(response);
     return response?.data;
@@ -15,7 +15,7 @@ class App extends Component {
 
   fetchPatient = async (patientId) => {
     const response = await axios.get(
-      `https://ti-patient-service.azurewebsites.net/patients/${patientId}`
+      `https://ti-patient-service.azurewebsites.net/patient/${patientId}`
     );
     console.log(response);
     return response?.data;
@@ -23,8 +23,8 @@ class App extends Component {
 
   constructor() {
     super();
-    // this.data = this.fetchPatients(); //API Call to get data for all patients
-    this.data = MOCK;
+    this.data = this.fetchPatients(); //API Call to get data for all patients
+    // this.data = MOCK;
     this.state = {
       data: this.data,
       patientDetails: null,
