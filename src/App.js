@@ -78,7 +78,7 @@ class App extends Component {
               <div id="copyright">
                     <ul>
                         <li>&copy; Aravinthan.</li>
-                        <li>Code: <a href="https://github.com/srhr17/srhr17.github.io" target="_blank">This Site</a></li>
+                        <li>Code: <a href="https://github.com/srhr17/srhr17.github.io">This Site</a></li>
                     </ul>
                 </div>
       </div>
