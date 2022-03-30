@@ -57,7 +57,7 @@ class App extends Component {
             <div>Gender: {patientDetails.gender}</div>
             <div>Date of Birth : {patientDetails.dateOfBirth}</div>
             <div>AddressLine1 : {patientDetails.addressLine1}</div>
-            <div>AddressLine2 : {patientDetails.addressLine2}</div>
+            <div>AddressLine2 : {patientDetails.addressLine2 || '-'}</div>
             <div>City : {patientDetails.city}</div>
             <div>State : {patientDetails.state}</div>
             <div>PostalCode: {patientDetails.postalCode}</div>
