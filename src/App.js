@@ -1,5 +1,5 @@
 import axios from 'axios';
-import MOCK from './mock.js';
+// import MOCK from './mock.js';
 import React, { Component } from 'react';
 
 class App extends Component {
@@ -22,8 +22,8 @@ class App extends Component {
 
   constructor() {
     super();
-    // this.data = this.fetchPatients(); //API Call to get data for all patients
-    this.data = MOCK;
+    this.data = this.fetchPatients(); //API Call to get data for all patients
+    // this.data = MOCK;
     this.state = {
       data: this.data,
       patientDetails: null,
@@ -33,12 +33,14 @@ class App extends Component {
 
   fetchDetails(patientId) {
     console.log(patientId);
-    // this.patientDetails = this.fetchPatient(patientId); //API Call to get data for specific patient
+    this.patientDetails = this.fetchPatient(patientId); //API Call to get data for specific patient
     //Mock Code w/o API call
     this.setState({
-      patientDetails: this.data.find(
-        (patient) => patient.patientId === patientId
-      ),
+      // patientDetails: this.data.find(
+      //   (patient) => patient.patientId === patientId
+      // ),
+      patientDetails: this.patientDetails
+
     });
   }
 
