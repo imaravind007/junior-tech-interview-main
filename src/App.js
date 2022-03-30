@@ -1,47 +1,31 @@
 import axios from 'axios';
-// import MOCK from './mock.js';
 import React, { Component } from 'react';
 
 class App extends Component {
-  fetchPatients = async () => {
-    console.log('In fetchPatients');
+  async fetchPatients () 
+  {
     const response = await axios.get(
       'https://ti-patient-service.azurewebsites.net/patients'
     );
-    console.log(response);
-    return response?.data;
+    this.setState({data:response?.data , patientDetails: null });
   };
 
-  fetchPatient = async (patientId) => {
+  async fetchPatient(patientId) 
+  {
     const response = await axios.get(
       `https://ti-patient-service.azurewebsites.net/patient/${patientId}`
     );
-    console.log(response);
-    return response?.data;
+    this.setState(
+    {
+      patientDetails: response?.data,
+    }
+    );
   };
 
   constructor() {
     super();
-    this.data = this.fetchPatients(); //API Call to get data for all patients
-    // this.data = MOCK;
-    this.state = {
-      data: this.data,
-      patientDetails: null,
-    };
-    console.log(this.data);
-  }
-
-  fetchDetails(patientId) {
-    console.log(patientId);
-    this.patientDetails = this.fetchPatient(patientId); //API Call to get data for specific patient
-    //Mock Code w/o API call
-    this.setState({
-      // patientDetails: this.data.find(
-      //   (patient) => patient.patientId === patientId
-      // ),
-      patientDetails: this.patientDetails
-
-    });
+    this.state = {}
+    this.fetchPatients(); //API Call to get data for all patients
   }
 
   componentDidMount(){
@@ -59,7 +43,7 @@ class App extends Component {
           {data &&
             data.map((val, key) => {
               return (
-                <tr key={key} onClick={() => this.fetchDetails(val.patientId)}>
+                <tr key={key} onClick={() => this.fetchPatient(val.patientId)}>
                   {val.lastName}, {val.firstName}
                 </tr>
               );
@@ -70,13 +54,13 @@ class App extends Component {
             <h1>Patient Details</h1>
             <div>First Name : {patientDetails.firstName}</div>
             <div>Last Name : {patientDetails.lastName}</div>
-            <div>gender: {patientDetails.gender}</div>
+            <div>Gender: {patientDetails.gender}</div>
             <div>Date of Birth : {patientDetails.dateOfBirth}</div>
-            <div>addressLine1 : {patientDetails.addressLine1}</div>
-            <div>addressLine2 : {patientDetails.addressLine2}</div>
-            <div>city : {patientDetails.city}</div>
-            <div>state : {patientDetails.state}</div>
-            <div>postalCode: {patientDetails.postalCode}</div>
+            <div>AddressLine1 : {patientDetails.addressLine1}</div>
+            <div>AddressLine2 : {patientDetails.addressLine2}</div>
+            <div>City : {patientDetails.city}</div>
+            <div>State : {patientDetails.state}</div>
+            <div>PostalCode: {patientDetails.postalCode}</div>
           </div>
         )}
 
