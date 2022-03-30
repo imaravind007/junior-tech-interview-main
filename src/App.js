@@ -1,7 +1,6 @@
-// import axios from 'axios';
+import axios from 'axios';
 import MOCK from './mock.js';
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class App extends Component {
   fetchPatients = async () => {
